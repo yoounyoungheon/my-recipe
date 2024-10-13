@@ -31,10 +31,10 @@ export default function NavLinks(){
               justify-center gap-2 rounded-md 
               bg-white p-3 text-sm text-emerald-600
               font-medium
-              hover:bg-emerald-100 hover:text-emerald-600
+              hover:bg-emerald-200 hover:text-emerald-600
               md:flex-none md:justify-start
               md:p-2 md:px-3`,
-              {'bg-emerald-100 text-emerald-800': pathName === link.href}
+              {'bg-emerald-200 text-emerald-800': pathName === link.href}
             )}>
                 <LinkIcon className='w-6'/>
                 <p className='hidden md:block'>{link.name}</p>
