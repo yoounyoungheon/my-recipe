@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 import { FormSubmitButton } from "./form-submit-button";
 import { FormContext } from "./form.context";
 import Callout from "../callout/callout";
-import { useToast } from "@/app/hook/use-toast";
+import { useToast } from "@/app/utils/hook/use-toast";
 
 export interface FormState {
   isSuccess: boolean;
@@ -36,6 +36,7 @@ export function FormRoot({
   const [formState, dispatch] = useFormState(action, initialState);
   const { toast } = useToast();
 
+  // formState의 상태에 따라서 동작 분기처리
   useEffect(() => {
     if (formState.isSuccess) {
       onSuccess?.();
@@ -47,9 +48,11 @@ export function FormRoot({
       });
     }
   }, [formState]);
-
+  
+  // 전달받은 children props 중 submit button만 렌더링
   const formSubmitButton = getFormSubmitButton(children);
 
+  // submit button이 아닌 props만 렌더링
   const renderWithoutSubmitButton = () => {
     return React.Children.map(children, (child, index) => {
       if (!React.isValidElement(child) || child.type === FormSubmitButton) return null;
