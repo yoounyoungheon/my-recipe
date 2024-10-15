@@ -26,7 +26,22 @@ export function athentication(prevState: FormState, formData: FormData):FormStat
     ...validatedFields.data
   };
 
+  const allUsers:(string | null)[] = [];
+    for(let i=0; i<localStorage.length; i++){
+        allUsers.push(localStorage.key(i))
+    }
+  console.log(allUsers);
+
   try{
+    if(!(body.email in allUsers)){
+      localStorage.setItem(body.email, body.password);
+      return {
+        isSuccess: true,
+        isFailure: false,
+        validationError: {},
+        message: '환영합니다. 해당 이메일과 비밀번호로 회원가입 되었습니다.'
+      }
+    }
     const pw = localStorage.getItem(body.email);
     if(!pw){
       return {

@@ -12,6 +12,7 @@ export default function Home() {
   useEffect(()=>{
     localStorage.setItem('example@naver.com', '1234!')
   }, []);
+  
   const router = useRouter();
 
   return (
@@ -20,7 +21,7 @@ export default function Home() {
         <div className="flex flex-col justify-center items-center text-center">
           <MainLogo className="text-black"/>
         </div>
-        
+        {/* 일반 로그인 */}
         <Card>
           <Form id='sign-in' action={athentication} onSuccess={()=>{router.push('/home')}} failMessageControl={'alert'}>
             <CardContent className="space-y-4 pt-6">
@@ -38,6 +39,7 @@ export default function Home() {
         </Card>
 
         <div className="grid gap-6 sm:grid-cols-2 lg: grid-cols-4">
+          {/* 소셜 로그인 */}
           <Card>
             <CardContent className="space-y-4 pt-6">
               <GithubLogo/>
