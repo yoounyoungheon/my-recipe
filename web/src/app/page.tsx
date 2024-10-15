@@ -1,6 +1,6 @@
 'use client'
 import { useRouter } from "next/navigation";
-import { athentication } from "./business/service/autn.action";
+import { athentication } from "./business/service/auth.action";
 import MainLogo from "./ui/component/atom/main-logo";
 import { Card, CardContent, CardFooter } from "./ui/component/molecule/card/card";
 import Form from "./ui/component/molecule/form/form-index";
@@ -12,7 +12,7 @@ export default function Home() {
   useEffect(()=>{
     localStorage.setItem('example@naver.com', '1234!')
   }, []);
-  
+
   const router = useRouter();
 
   return (
