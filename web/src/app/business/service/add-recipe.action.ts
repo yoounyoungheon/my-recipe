@@ -31,7 +31,7 @@ export function addRecipe(prevState: FormState, formData: FormData):FormState{
     version: version,
     updatedAt: new Date(),
   };
-  localStorage.setItem(JSON.stringify({title: newTitle, version: version}) as string, JSON.stringify(body))
+  localStorage.setItem(JSON.stringify({title: newTitle, version: version, user: user}) as string, JSON.stringify(body))
   
   return {
     isSuccess: true,

@@ -1,10 +1,31 @@
 'use client'
 import { lusitana } from "@/app/fonts/fonts"
+import { RecipeType } from "@/app/storage/type";
 import { Card, CardContent, CardFooter } from "@/app/ui/component/molecule/card/card";
 import Form from "@/app/ui/component/molecule/form/form-index";
+import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 export default function Page(){
+  const email = 'yh@naver.com';
+  const params = useSearchParams();
+  const titleKey = params.get('title');
+  const versionKey = params.get('version');
+
+  const recipyKey = `{"title":"${titleKey}","version":${versionKey}}`;
+
+  const [recipe, setRecipe] = useState<RecipeType>({
+    title:'',
+    email:'',
+    ingredients: [],
+    process: [],
+    tags: [],
+    updatedAt: new Date(),
+    version: 0
+  });
+
   
+
   return (
     <main>
       {/* <div className="pt-6"></div> */}

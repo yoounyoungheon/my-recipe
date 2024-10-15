@@ -3,7 +3,7 @@ import { recipeKeyType } from "@/app/storage/type";
 import { lusitana } from "@/app/fonts/fonts"
 import { RecipeType } from "@/app/storage/type";
 import { Card, CardContent, CardFooter } from "@/app/ui/component/molecule/card/card";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import AchromaticButton from "@/app/ui/component/atom/achromatic-button";
 
@@ -12,6 +12,7 @@ interface UpdateInfo{
   updatedAt: Date;
 }
 export default function Page(){
+  const router = useRouter();
   const email = 'yh@naver.com';
   const params = useSearchParams();
   const key = params.get('title');
@@ -72,7 +73,6 @@ export default function Page(){
       </div>
       <AchromaticButton className="bg-emerald-300" type="button" onClick={()=>{handleUpdatedVersion(obj.version)}}>go to this version</AchromaticButton>
     </div>
-    
     )
   })
   
@@ -104,6 +104,11 @@ export default function Page(){
         </CardContent>
       </Card>
       <div>{ViewVersion}</div>
+      <div>
+        <AchromaticButton onClick={()=>{router.push(`/home/modify-recipe&title=${recipe.title}?version=${version}`)}}>수정</AchromaticButton>
+        <AchromaticButton onClick={()=>{}}>삭제</AchromaticButton>
+        <AchromaticButton onClick={()=>{}}>목록으로</AchromaticButton>
+      </div>
       </div>
     </main>
   )
