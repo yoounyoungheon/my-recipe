@@ -4,12 +4,14 @@ import { lusitana } from "@/app/fonts/fonts"
 import AchromaticButton from "@/app/ui/component/atom/achromatic-button";
 import { Card, CardContent, CardFooter } from "@/app/ui/component/molecule/card/card";
 import Form from "@/app/ui/component/molecule/form/form-index";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Page(){
   const [tagCounts, setTagCounts] = useState([1]);
   const [ingredientCounts, setIngredientCounts] = useState([1]);
   const [processCounts, setProcessCounts] = useState([1]);
+  const router = useRouter();
 
   const handleAddTagInput = (event: React.MouseEvent<HTMLButtonElement>) =>{
     event.preventDefault();
@@ -82,7 +84,7 @@ export default function Page(){
         Add Recipe
       </h1>
       <div className="grid gap-6 sm:grid-rows-2 lg:grid-rows-4">
-      <Form id='add-recipe' action={addRecipe} onSuccess={()=>{}} failMessageControl="alert">
+      <Form id='add-recipe' action={addRecipe} onSuccess={()=>{router.push('/home')}} failMessageControl="alert">
       <Card>
         <CardContent className="space-y-4 pt-6">
           <div className="space-y-2">
