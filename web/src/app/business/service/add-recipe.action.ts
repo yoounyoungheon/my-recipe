@@ -15,7 +15,7 @@ export function addRecipe(prevState: FormState, formData: FormData):FormState{
       validationError: {},
       message: '로컬스토리지에 문제가 생겼습니다. 새로운 계정으로 로그인해주세요.'
     }
-  } else if(recipes.length>1){
+  } else if(recipes.length>=1){
     if(newTitle in recipes.map((obj)=>{return obj.title})){}
   }
   recipes.push({title: newTitle, version: version});
@@ -41,14 +41,8 @@ export function addRecipe(prevState: FormState, formData: FormData):FormState{
   }
 }
 
-function updateVersion(lst: recipeKeyType[], title: string): number{
-  const filteredLst = lst.filter((obj)=>{return obj.title == title})
-  const versions = filteredLst.map((obj)=>{
-    return obj.version;
-  })
-  let max=0;
-  for(const version of versions){
-    if (version > max){max = version}
-  }
-  return max+1;
+function updateVersion(lst: recipeKeyType[], title: string): number {
+  const filteredLst = lst.filter(obj => obj.title === title);
+  const versions = filteredLst.map(obj => obj.version);
+  return Math.max(...versions, 0) + 1;
 }

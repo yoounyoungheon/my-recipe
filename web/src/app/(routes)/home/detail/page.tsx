@@ -6,6 +6,7 @@ import { Card, CardContent, CardFooter } from "@/app/ui/component/molecule/card/
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import AchromaticButton from "@/app/ui/component/atom/achromatic-button";
+import { getRandomColor } from "@/app/utils/helper";
 
 interface UpdateInfo{
   version: number;
@@ -67,7 +68,7 @@ export default function Page(){
 
   const ViewVersion: JSX.Element[] = versionInfoList.map((obj, index)=>{
     return (
-    <div key={index}>
+    <div key={index} className="flex justify-between items-center pt-2">
       <div>
       버전 정보: {obj.version}, updatedAt: {String(obj.updatedAt)}
       </div>
@@ -90,22 +91,36 @@ export default function Page(){
       </Card>
       <Card>
         <CardContent className="space-y-4 pt-6 text-center">
-          {recipe.process}
+          <ul className="list-disc list-inside">
+            {recipe.process.map((step, index) => (
+              <li key={index}>{step}</li>
+            ))}
+          </ul>
         </CardContent>
       </Card>
       <Card>
         <CardContent className="space-y-4 pt-6 text-center">
-          {recipe.tags}
+          <div className="flex flex-wrap justify-center">
+            {recipe.tags.map((tag, index) => (
+              <div key={index} className="m-1 px-2 py-1 rounded-md text-sm text-neutral-100" style={{ backgroundColor: getRandomColor() }}>
+                {tag}
+              </div>
+            ))}
+          </div>
         </CardContent>
       </Card>
       <Card>
         <CardContent className="space-y-4 pt-6 text-center">
-          {recipe.ingredients}
+          <ul className="list-disc list-inside">
+            {recipe.ingredients.map((ingredient, index) => (
+              <li key={index}>{ingredient}</li>
+            ))}
+          </ul>
         </CardContent>
       </Card>
       <div>{ViewVersion}</div>
-      <div>
-        <AchromaticButton onClick={()=>{router.push(`/home/modify-recipe&title=${recipe.title}?version=${version}`)}}>수정</AchromaticButton>
+      <div className="flex justify-center space-x-4">
+        <AchromaticButton onClick={()=>{router.push(`/home/update-recipe?title=${recipe.title}&version=${version}`)}}>수정</AchromaticButton>
         <AchromaticButton onClick={()=>{}}>삭제</AchromaticButton>
         <AchromaticButton onClick={()=>{}}>목록으로</AchromaticButton>
       </div>
