@@ -83,12 +83,11 @@ export default function Page(){
       <h1 className={`${lusitana.className} text-center mb-4 text-xl md:text-2xl`} >
         Recipe
       </h1>
+      <div className="space-y-2 pt-3 text-center text-xl">
+          <strong>{recipe.title}</strong>
+      </div>
+      <br/>
       <div className="grid gap-6 sm:grid-rows-2 lg:grid-rows-4">
-      <Card>
-        <CardContent className="space-y-4 pt-6 text-center">
-          {recipe.title}
-        </CardContent>
-      </Card>
       <Card>
         <CardContent className="space-y-4 pt-6 text-center">
           <ul className="list-disc list-inside">

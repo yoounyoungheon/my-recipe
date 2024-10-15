@@ -12,7 +12,7 @@ export function updateRecipe(prevState: FormState, formData: FormData, recipe: R
   const newVersion = recipes?.length==0?1:updateVersion(recipes as recipeKeyType[], title);
   const oldTags = recipe.tags;
   const oldIngredients = recipe.ingredients;
-  const oldProcess = recipe.ingredients;
+  const oldProcess = recipe.process;
 
   if(!recipes || !recipe){
     return {
