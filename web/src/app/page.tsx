@@ -4,14 +4,13 @@ import { athentication } from "./business/service/auth.action";
 import MainLogo from "./ui/component/atom/main-logo";
 import { Card, CardContent, CardFooter } from "./ui/component/molecule/card/card";
 import Form from "./ui/component/molecule/form/form-index";
-import { useEffect } from "react";
 import { GithubLogo, GoogleLogo } from "./utils/public/logoes";
 
 export default function Home() {
   // seeding mockUser for normal login
-  useEffect(()=>{
-    localStorage.setItem('example@naver.com', '1234!')
-  }, []);
+  // useEffect(()=>{
+  //   localStorage.setItem('example@naver.com', '1234!')
+  // }, []);
 
   const router = useRouter();
 

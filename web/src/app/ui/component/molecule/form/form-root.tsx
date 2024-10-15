@@ -1,5 +1,5 @@
 'use client'
-import { filterChildrenByType } from "@/app/utils/helper";
+// import { filterChildrenByType } from "@/app/utils/helper";
 import { useFormState } from 'react-dom';
 import React, { useEffect } from 'react';
 import { FormSubmitButton } from "./form-submit-button";
@@ -21,9 +21,9 @@ interface FormRootProps {
   failMessageControl: 'alert' | 'toast';
 }
 
-const getFormSubmitButton = (children: React.ReactNode) => {
-  return filterChildrenByType(children, FormSubmitButton)
-}
+// const getFormSubmitButton = (children: React.ReactNode) => {
+//   return filterChildrenByType(children, FormSubmitButton)
+// }
 
 export function FormRoot({
   id,
@@ -50,7 +50,7 @@ export function FormRoot({
   }, [formState]);
   
   // 전달받은 children props 중 submit button만 렌더링
-  const formSubmitButton = getFormSubmitButton(children);
+  // const formSubmitButton = getFormSubmitButton(children);
 
   // submit button이 아닌 props만 렌더링
   const renderWithoutSubmitButton = () => {
@@ -70,7 +70,7 @@ export function FormRoot({
       ) : null}
       <form id={id} action={dispatch}>
         {renderWithoutSubmitButton()}
-        {formSubmitButton}
+        {/* {formSubmitButton} */}
       </form>
     </FormContext.Provider>
   );
