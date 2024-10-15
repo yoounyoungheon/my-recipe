@@ -1,9 +1,5 @@
+import { recipeKeyType } from "@/app/storage/type";
 import { FormState } from "@/app/ui/component/molecule/form/form-root";
-
-export interface recipeKeyType{
-  title: string;
-  version: number;
-}
 
 export function addRecipe(prevState: FormState, formData: FormData):FormState{
   const user = 'yh@naver.com'

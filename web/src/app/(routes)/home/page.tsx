@@ -1,5 +1,5 @@
 'use client'
-import { recipeKeyType } from "@/app/business/service/add-recipe.action";
+import { recipeKeyType } from "@/app/storage/type";
 import { lusitana } from "@/app/fonts/fonts"
 import { Card, CardContent, CardFooter } from "@/app/ui/component/molecule/card/card";
 import Link from "next/link";

@@ -7,3 +7,8 @@ export interface RecipeType{
     updatedAt: Date;
     version: number;
   }
+
+  export interface recipeKeyType{
+    title: string;
+    version: number;
+  }
