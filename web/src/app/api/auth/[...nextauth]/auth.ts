@@ -37,7 +37,7 @@ export const {
       if (account?.provider === 'github') {
         return profile?.email ? true : false;
       } else if (account?.provider === 'google') {
-        return !!profile?.email_verified
+        return !!profile?.email ? true: false;
       } 
       return true
     },

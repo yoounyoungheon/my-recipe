@@ -1,7 +1,6 @@
 import { getSession } from "@/app/api/auth/[...nextauth]/auth.action";
 import { recipeKeyType } from "@/app/storage/type";
 import { FormState } from "@/app/ui/component/molecule/form/form-root";
-import { useSession } from "next-auth/react";
 
 export async function addRecipe(prevState: FormState, formData: FormData):Promise<FormState>{
   const session = await getSession();

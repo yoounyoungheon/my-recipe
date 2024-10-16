@@ -1,14 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use server'
 import { FormState } from '@/app/ui/component/molecule/form/form-root'
 import { auth, signIn, signOut } from '@/app/api/auth/[...nextauth]/auth'
-import { z } from "zod";
-
-const SignInFormSchema = z.object({
-  email: z.string(),
-  password: z.string()
-});
-
-type SignInRequsetBody = z.infer<typeof SignInFormSchema>;
 
 export async function signInWithCredentials(prevState: FormState, formData: FormData):Promise<FormState>{
   await signIn('Credentials', {
@@ -43,8 +36,8 @@ export async function signInWithGithub(prevState: FormState, formData: FormData)
       validationError: {}
     }
   }
-export const signOutWithForm = async (formData: FormData) => {
-  await signOut()
+export const signOutWithForm = async () => {
+  await signOut({ redirectTo: 'http://localhost:3000/', redirect: true })
 }
 export {
   auth as getSession,

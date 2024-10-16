@@ -1,4 +1,3 @@
-
 import { SessionProvider } from "next-auth/react";
 import "./globals.css";
 
@@ -8,7 +7,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
         <SessionProvider>
           {children}

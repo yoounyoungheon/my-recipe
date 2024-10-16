@@ -14,7 +14,17 @@ export default function Page(){
 
   useEffect(() => {
     const storedData = localStorage.getItem(key);
-    if (storedData) {
+    if(!storedData){
+      localStorage.setItem(key, JSON.stringify([]));
+      const newMemberData = localStorage.getItem(key);
+
+      const response: recipeKeyType[] = JSON.parse(newMemberData as string);
+      const titleList: string[] = response.map((obj) => obj.title);
+      const uniqueTitles = titleList.filter((v, i) => titleList.indexOf(v) === i);
+      setFilterDuplicated(uniqueTitles);
+
+    }
+    else if (storedData) {
       const response: recipeKeyType[] = JSON.parse(storedData);
       const titleList: string[] = response.map((obj) => obj.title);
       const uniqueTitles = titleList.filter((v, i) => titleList.indexOf(v) === i);
@@ -36,7 +46,10 @@ export default function Page(){
       </Card>
     </div>
   ))
-  return (
+  if(!email){
+    return (<main> <Link href={'/'}>로그인하세요 !</Link> </main>)
+  }else {
+    return (
     <main>
       {/* <div className="pt-6"></div> */}
       <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`} >
@@ -47,4 +60,4 @@ export default function Page(){
       </div>
     </main>
   )
-}
+}}

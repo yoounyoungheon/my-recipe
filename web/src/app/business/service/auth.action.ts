@@ -77,14 +77,3 @@ export function athentication(prevState: FormState, formData: FormData):FormStat
     throw error;
   }
 }
-
-interface LoginInfo{
-  email: string;
-  password: string;
-}
-
-export async function fetchUser():Promise<string>{
-  const res = await (await fetch('http://localhost:3000/api/auth/session')).json();
-  const email = res.email;
-  return email;
-}
