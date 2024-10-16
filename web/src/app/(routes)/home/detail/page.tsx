@@ -9,6 +9,7 @@ import AchromaticButton from "@/app/ui/component/atom/achromatic-button";
 import { getRandomColor } from "@/app/utils/helper";
 import { useSession } from "next-auth/react";
 import { AutoCounter } from "@/app/ui/component/molecule/timer";
+import { useDeleteRecipe } from "@/app/business/hook/delete-recipe";
 
 interface UpdateInfo{
   version: number;
@@ -43,7 +44,7 @@ export default function Page(){
           allKeys.push(storageKey);
         }
       }
-      
+
       const res: RecipeType[] = allKeys
         .map((storageKey) => {
           const value = localStorage.getItem(storageKey);
@@ -91,6 +92,8 @@ export default function Page(){
     </div>
     )
   })
+
+  const deleteRecipe = useDeleteRecipe(recipe.email, recipe.title);
   
   return (
     <main>
@@ -133,7 +136,7 @@ export default function Page(){
       <div>{ViewVersion}</div>
       <div className="flex justify-center space-x-4">
         <AchromaticButton onClick={()=>{router.push(`/home/update-recipe?title=${recipe.title}&version=${version}`)}}>수정</AchromaticButton>
-        <AchromaticButton onClick={()=>{console.log()}}>삭제</AchromaticButton>
+        <AchromaticButton onClick={()=>{deleteRecipe();}}>삭제</AchromaticButton>
         <AchromaticButton onClick={()=>{router.push(`/home`)}}>목록으로</AchromaticButton></div>
       </div>
     </main>
