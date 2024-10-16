@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { match } from 'path-to-regexp'
-import { getSession } from './auth.action' // import { auth } from '@/auth'
+import { getSession } from "@/app/api/auth/[...nextauth]/auth.action"; // import { auth } from '@/auth'
 
 
 const matchersForAuth = [

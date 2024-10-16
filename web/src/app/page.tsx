@@ -1,18 +1,14 @@
 'use client'
 import { useRouter } from "next/navigation";
-import { athentication } from "./business/service/auth.action";
 import MainLogo from "./ui/component/atom/main-logo";
 import { Card, CardContent, CardFooter } from "./ui/component/molecule/card/card";
 import Form from "./ui/component/molecule/form/form-index";
 import { GithubLogo, GoogleLogo } from "./utils/public/logoes";
-import { signInWithGithub, signInWithGoogle } from "./api/auth/[...nextauth]/auth.action";
+import { signInWithGithub, signInWithGoogle } from "@/app/api/auth/[...nextauth]/auth.action";
+import { authentication } from "./api/auth/[...nextauth]/auth.client.action";
+import { signIn } from "./api/auth/[...nextauth]/auth";
 
 export default function Home() {
-  // seeding mockUser for normal login
-  // useEffect(()=>{
-  //   localStorage.setItem('example@naver.com', '1234!')
-  // }, []);
-
   const router = useRouter();
 
   return (
@@ -23,7 +19,12 @@ export default function Home() {
         </div>
         {/* 일반 로그인 */}
         <Card>
-          <Form id='sign-in' action={athentication} onSuccess={()=>{router.push('/home')}} failMessageControl={'alert'}>
+          <Form id='sign-in'
+            action={authentication}
+            onSuccess={()=>{
+            router.push('/home')}}
+            failMessageControl={'alert'}
+          >
             <CardContent className="space-y-4 pt-6">
             <div className="space-y-2">
               <Form.TextInput label="Email" id="email" placeholder="m@example.com" />
@@ -62,7 +63,6 @@ export default function Home() {
           </Card>
           </Form>
         </div>
-        
       </div>
     </main>
   );
