@@ -5,6 +5,8 @@ import MainLogo from "./ui/component/atom/main-logo";
 import { Card, CardContent, CardFooter } from "./ui/component/molecule/card/card";
 import Form from "./ui/component/molecule/form/form-index";
 import { GithubLogo, GoogleLogo } from "./utils/public/logoes";
+import { signInWithGithub, signInWithGoogle } from "./api/auth/[...nextauth]/auth.action";
+import AchromaticButton from "./ui/component/atom/achromatic-button";
 
 export default function Home() {
   // seeding mockUser for normal login
@@ -39,23 +41,27 @@ export default function Home() {
 
         <div className="grid gap-6 sm:grid-cols-2 lg: grid-cols-4">
           {/* 소셜 로그인 */}
+          <Form id='sign-in for github' action={signInWithGithub} failMessageControl={'alert'}>
           <Card>
             <CardContent className="space-y-4 pt-6">
               <GithubLogo/>
             </CardContent>
             <CardFooter>
-              <Form.SubmitButton label="Sign In for google" position="center" className="w-full" />
+              <Form.SubmitButton label="Sign In for github" position='center' className="w-full" />
             </CardFooter>
           </Card>
+          </Form>
 
+          <Form id='sign-in for google' action={signInWithGoogle} failMessageControl={'alert'}>
           <Card>
             <CardContent className="space-y-4 pt-6">
               <GoogleLogo/>
             </CardContent>
             <CardFooter>
-              <Form.SubmitButton label="Sign In for github" position="center" className="w-full" />
+              <Form.SubmitButton label="Sign In for google" position = 'center' className="w-full" />
             </CardFooter>
           </Card>
+          </Form>
         </div>
         
       </div>
