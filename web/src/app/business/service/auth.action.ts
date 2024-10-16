@@ -7,9 +7,7 @@ const SignInFormSchema = z.object({
 });
 
 type SignInRequsetBody = z.infer<typeof SignInFormSchema>;
-export function siginIn(){
 
-}
 export function athentication(prevState: FormState, formData: FormData):FormState{
   const validatedFields = SignInFormSchema.safeParse({
     email: formData.get('email'),
@@ -85,44 +83,8 @@ interface LoginInfo{
   password: string;
 }
 
-export function _signIn(body:LoginInfo):string{
-  const allUsers:(string | null)[] = [];
-  for(let i=0; i<localStorage.length; i++){
-    allUsers.push(localStorage.key(i))
-  }
-
-  try{
-    if(!allUsers.includes(body.email)){
-      // 데이터 베이스에 회원이 없는 경우: 자동 회원가입
-      localStorage.setItem(body.email, body.password);
-      localStorage.setItem(`${body.email}recipes`, JSON.stringify([]));
-      console.log(`${body.email}: 로컬 스토리지에 없는 회원이므로, 자동 회원가입 되었습니다.`)
-      return body.email
-    } else{
-      const pw = localStorage.getItem(body.email);
-      if(!pw){
-        throw {
-          isSuccess: false,
-          isFailure: true,
-          validationError: {},
-          message: `로컬 스토리지에서 해당 아이디를 찾을 수 없습니다.`
-        }
-      }
-      
-      if(pw === body.password){
-        console.log(`로그인에 성공했습니다. email: ${body.email}`)
-        return body.email;
-      }else{
-        throw {
-          isSuccess: false,
-          isFailure: true,
-          validationError: {},
-          message: `비밀번호를 다시 입력하세요.`
-        }
-      }
-    }
-    
-  }catch(error){
-    throw error;
-  }
+export async function fetchUser():Promise<string>{
+  const res = await (await fetch('http://localhost:3000/api/auth/session')).json();
+  const email = res.email;
+  return email;
 }

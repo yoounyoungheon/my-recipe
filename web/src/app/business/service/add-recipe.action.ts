@@ -1,8 +1,12 @@
+import { getSession } from "@/app/api/auth/[...nextauth]/auth.action";
 import { recipeKeyType } from "@/app/storage/type";
 import { FormState } from "@/app/ui/component/molecule/form/form-root";
+import { useSession } from "next-auth/react";
 
-export function addRecipe(prevState: FormState, formData: FormData):FormState{
-  const user = 'yh@naver.com'
+export async function addRecipe(prevState: FormState, formData: FormData):Promise<FormState>{
+  const session = await getSession();
+  
+  const user = session?.user?.email;
   // user recipes update
   const id = `${user}recipes`
   const recipes:recipeKeyType[] | null = JSON.parse(localStorage.getItem(id) as string);

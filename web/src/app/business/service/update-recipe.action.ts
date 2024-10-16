@@ -1,8 +1,11 @@
 import { recipeKeyType, RecipeType } from "@/app/storage/type";
 import { FormState } from "@/app/ui/component/molecule/form/form-root";
+import { getSession } from "next-auth/react";
 
-export function updateRecipe(prevState: FormState, formData: FormData, recipe: RecipeType):FormState{
-  const user = 'yh@naver.com'
+export async function updateRecipe(prevState: FormState, formData: FormData, recipe: RecipeType):Promise<FormState>{
+  const session = await getSession();
+  const user = session?.user?.email;
+  
   // user recipes update
   console.log(recipe);
   const id = `${user}recipes`

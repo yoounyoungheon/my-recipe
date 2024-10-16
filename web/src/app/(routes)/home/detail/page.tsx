@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import AchromaticButton from "@/app/ui/component/atom/achromatic-button";
 import { getRandomColor } from "@/app/utils/helper";
+import { useSession } from "next-auth/react";
 
 interface UpdateInfo{
   version: number;
@@ -14,7 +15,8 @@ interface UpdateInfo{
 }
 export default function Page(){
   const router = useRouter();
-  const email = 'yh@naver.com';
+  const session = useSession();
+  const email = session.data?.user?.email;
   const params = useSearchParams();
   const key = params.get('title');
 
@@ -76,6 +78,8 @@ export default function Page(){
     </div>
     )
   })
+
+  console.log(recipe);
   
   return (
     <main>

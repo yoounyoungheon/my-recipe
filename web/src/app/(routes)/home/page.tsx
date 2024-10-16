@@ -4,11 +4,12 @@ import { lusitana } from "@/app/fonts/fonts"
 import { Card, CardContent, CardFooter } from "@/app/ui/component/molecule/card/card";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 
 export default function Page(){
-  const email:string = 'yh@naver.com';
+  const session = useSession();
+  const email = session.data?.user?.email;
   const key:string = `${email}recipes`;
-
   const [filterduplicated, setFilterDuplicated] = useState<string[]>([]);
 
   useEffect(() => {

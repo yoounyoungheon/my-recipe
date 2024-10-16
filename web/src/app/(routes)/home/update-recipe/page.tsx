@@ -5,12 +5,15 @@ import { RecipeType } from "@/app/storage/type";
 import AchromaticButton from "@/app/ui/component/atom/achromatic-button";
 import { Card, CardContent, CardFooter } from "@/app/ui/component/molecule/card/card";
 import Form from "@/app/ui/component/molecule/form/form-index";
+import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Page(){
   const router = useRouter();
-  const email = 'yh@naver.com';
+  const session = useSession();
+  const email = session.data?.user?.email;
+  
   const params = useSearchParams();
   const titleKey = params.get('title');
   const versionKey = params.get('version');

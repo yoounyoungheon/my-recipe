@@ -6,7 +6,6 @@ import { Card, CardContent, CardFooter } from "./ui/component/molecule/card/card
 import Form from "./ui/component/molecule/form/form-index";
 import { GithubLogo, GoogleLogo } from "./utils/public/logoes";
 import { signInWithGithub, signInWithGoogle } from "./api/auth/[...nextauth]/auth.action";
-import AchromaticButton from "./ui/component/atom/achromatic-button";
 
 export default function Home() {
   // seeding mockUser for normal login
