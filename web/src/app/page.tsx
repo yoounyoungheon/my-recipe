@@ -6,7 +6,6 @@ import Form from "./ui/component/molecule/form/form-index";
 import { GithubLogo, GoogleLogo } from "./utils/public/logoes";
 import { signInWithGithub, signInWithGoogle } from "@/app/api/auth/[...nextauth]/auth.action";
 import { authentication } from "./api/auth/[...nextauth]/auth.client.action";
-import { signIn } from "./api/auth/[...nextauth]/auth";
 
 export default function Home() {
   const router = useRouter();

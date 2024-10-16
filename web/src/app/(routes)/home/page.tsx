@@ -47,7 +47,7 @@ export default function Page(){
     </div>
   ))
   if(!email){
-    return (<main> <Link href={'/'}>로그인하세요 !</Link> </main>)
+    return (<main> <Link href={'/'}>환영합니다. 더 나은 서비스를 위해 소셜 서비스로 로그인하세요 ! (로그인하기)</Link> </main>)
   }else {
     return (
     <main>
