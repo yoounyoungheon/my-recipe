@@ -37,7 +37,7 @@ export async function signInWithGithub(prevState: FormState, formData: FormData)
     }
   }
 export const signOutWithForm = async () => {
-  await signOut({ redirectTo: 'http://localhost:3000/', redirect: true })
+  await signOut();
 }
 export {
   auth as getSession,

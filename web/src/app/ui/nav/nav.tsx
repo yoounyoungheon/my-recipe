@@ -2,7 +2,7 @@
 import NavLinks from "./nav-link";
 import { PowerIcon } from "@heroicons/react/16/solid";
 import MainLogo from "../component/atom/main-logo";
-import { signOutWithForm } from "@/app/api/auth/[...nextauth]/auth.action";
+import { signOut } from "next-auth/react";
 
 export default function Nav() {
   return (
@@ -13,12 +13,12 @@ export default function Nav() {
       <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
         <NavLinks/>
         <div className="hidden h-auto w-full grow rounded-md bg-emerald-10 md:block"></div>
-        <form>
+        <form action={
+          async()=>{
+            await signOut({redirect: true, redirectTo:'/'});
+          }}>
           <button
             className="flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-white-50 p-3 text-sm text-emerald-800 font-medium hover:bg-emerald-50 hover:text-emerald-600 md:flex-none md:justify-start md:p-2 md:px-3"
-            onClick={async ()=> {
-              await signOutWithForm();
-            }}
           >
             <PowerIcon className="w-6" />
             <div className="hidden md:block">Sign Out</div>

@@ -9,13 +9,13 @@ export const {
   auth,
 } = NextAuth({
   providers: [
-    // Credentials, Google, GitHub 등의 인증 공급자를 지정합니다.
+    // define Credentials, Google, GitHub provider
     Google({
       clientId: process.env.AUTH_GOOGLE_ID,
       clientSecret: process.env.AUTH_GOOGLE_SECRETE,
       authorization: {
         params: {
-          prompt: 'consent' // 사용자에게 항상 동의 화면을 표시하도록 강제!
+          prompt: 'consent'
         }
       }
     }),
@@ -24,7 +24,7 @@ export const {
       clientSecret: process.env.AUTH_GITHUB_SECRETE,
       authorization: {
         params: {
-          prompt: 'consent' // 사용자에게 항상 동의 화면을 표시하도록 강제!
+          prompt: 'consent' 
         }
       }
     })
